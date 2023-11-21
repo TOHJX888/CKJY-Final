@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var ingredientManager: IngredientManager
+    
     var body: some View {
         TabView {
             RecipesView()
@@ -30,5 +33,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(IngredientManager())
     }
 }

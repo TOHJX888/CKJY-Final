@@ -12,6 +12,7 @@
 		936D5D0F2B08581F009D33F5 /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D5D0E2B08581F009D33F5 /* FoodList.swift */; };
 		936D5D182B0AF4E8009D33F5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D5D172B0AF4E8009D33F5 /* Ingredient.swift */; };
 		990901FA2B0B40C500A2B1D9 /* IngredientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990901F92B0B40C500A2B1D9 /* IngredientManager.swift */; };
+		99ABCBF12B0C4D5800656B87 /* FoodListInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABCBF02B0C4D5800656B87 /* FoodListInterfaceView.swift */; };
 		D1E9D3572B08503800BA45C8 /* CKJY_FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E9D3562B08503800BA45C8 /* CKJY_FinalApp.swift */; };
 		D1E9D3592B08503800BA45C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E9D3582B08503800BA45C8 /* ContentView.swift */; };
 		D1E9D35B2B08503A00BA45C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E9D35A2B08503A00BA45C8 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		936D5D0E2B08581F009D33F5 /* FoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 		936D5D172B0AF4E8009D33F5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		990901F92B0B40C500A2B1D9 /* IngredientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientManager.swift; sourceTree = "<group>"; };
+		99ABCBF02B0C4D5800656B87 /* FoodListInterfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListInterfaceView.swift; sourceTree = "<group>"; };
 		D1E9D3532B08503800BA45C8 /* CKJY Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CKJY Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E9D3562B08503800BA45C8 /* CKJY_FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKJY_FinalApp.swift; sourceTree = "<group>"; };
 		D1E9D3582B08503800BA45C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				936D5D0E2B08581F009D33F5 /* FoodList.swift */,
+				99ABCBF02B0C4D5800656B87 /* FoodListInterfaceView.swift */,
 				936D5D172B0AF4E8009D33F5 /* Ingredient.swift */,
 				990901F92B0B40C500A2B1D9 /* IngredientManager.swift */,
 			);
@@ -286,6 +289,7 @@
 				936D5D0D2B085815009D33F5 /* RecipesView.swift in Sources */,
 				936D5D182B0AF4E8009D33F5 /* Ingredient.swift in Sources */,
 				936D5D0B2B08576A009D33F5 /* ProgressView.swift in Sources */,
+				99ABCBF12B0C4D5800656B87 /* FoodListInterfaceView.swift in Sources */,
 				990901FA2B0B40C500A2B1D9 /* IngredientManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

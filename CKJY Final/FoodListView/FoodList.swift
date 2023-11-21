@@ -167,59 +167,44 @@ struct FoodListView: View {
         
     ]
     @State private var searchTerm = ""
-    @ObservedObject var ingredientManager: IngredientManager
+    @EnvironmentObject var ingredientManager: IngredientManager
     
     var body: some View {
         NavigationStack {
-          //  List(searchTerm == "" ? IngredientManager.ingredients : IngredientManager.ingredients.filter {
-          //      $0.name.lowercased().contains(searchTerm.lowercased())
-         //   }) { ingredient in
-         //       Text(ingredient.name)
-         //   }
-         //   .searchable(text: $searchTerm)
+            //  List(searchTerm == "" ? IngredientManager.ingredients : IngredientManager.ingredients.filter {
+            //      $0.name.lowercased().contains(searchTerm.lowercased())
+            //   }) { ingredient in
+            //       Text(ingredient.name)
+            //   }
+            //   .searchable(text: $searchTerm)
             List(ingredientManager.ingredientsFiltered, editActions: [.all]) { $ingredient in
-                    HStack {
-                        Image(systemName: ingredient.isEaten ? "checkmark.circle.fill" : "circle")
-                            .onTapGesture {
-                                ingredient.isEaten.toggle()
-                            }
-                        VStack {
-                            Text(ingredient.name)
-                                .strikethrough(ingredient.isEaten)
-                            if !ingredient.points.isEmpty {
-                                HStack {
-                                    Text(ingredient.points)
-                                    Image(systemName: "leaf.fill")
-                                }
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                                .strikethrough(ingredient.isEaten)
-                            }
-                        }
-                    } (ingredient: Binding(get: {ingredient}, set: {ingredient = $0}))
+                FoodListInterfaceView(ingredient: $ingredient)
+                //                FoodListInterfaceView(ingredient: $ingredient, Binding(get: {ingredient}, set: {ingredient = $0}))
+                
             }
             .searchable(text: $ingredientManager.searchTerm)
             .navigationTitle("My Food List")
-              .toolbar {
-                 ToolbarItem(placement: .navigationBarLeading) {
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
-                 }
-                  ToolbarItem(placement: .navigationBarTrailing) {
-                      Button {
-                          //action here (search bar appears)
-                      } label: {
-                          Image(systemName: "plus")
-                      }
-                  }
-              }
-
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        //action here (search bar appears)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
         }
+        
     }
 }
 
 struct FoodListView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodListView(ingredientManager: IngredientManager())
+        FoodListView()
+            .environmentObject(IngredientManager())
     }
 }
 

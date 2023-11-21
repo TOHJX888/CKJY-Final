@@ -12,6 +12,7 @@ struct CKJY_FinalApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(IngredientManager())
         }
     }
 }

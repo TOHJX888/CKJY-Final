@@ -181,6 +181,7 @@ struct FoodListView: View {
                 FoodListInterfaceView(ingredient: $ingredient)
                 //                FoodListInterfaceView(ingredient: $ingredient, Binding(get: {ingredient}, set: {ingredient = $0}))
                 
+            
             }
             .searchable(text: $ingredientManager.searchTerm)
             .navigationTitle("My Food List")

@@ -171,12 +171,6 @@ struct FoodListView: View {
     
     var body: some View {
         NavigationStack {
-            //  List(searchTerm == "" ? IngredientManager.ingredients : IngredientManager.ingredients.filter {
-            //      $0.name.lowercased().contains(searchTerm.lowercased())
-            //   }) { ingredient in
-            //       Text(ingredient.name)
-            //   }
-            //   .searchable(text: $searchTerm)
             List(ingredientManager.ingredientsFiltered, editActions: [.all]) { $ingredient in
                 FoodListInterfaceView(ingredient: $ingredient)
                 //                FoodListInterfaceView(ingredient: $ingredient, Binding(get: {ingredient}, set: {ingredient = $0}))

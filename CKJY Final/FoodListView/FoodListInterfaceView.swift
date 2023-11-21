@@ -12,7 +12,6 @@ struct FoodListInterfaceView: View {
     @Binding var ingredient: Ingredient
 
     @EnvironmentObject var ingredientManager: IngredientManager
-//    @Binding var sourceArray: [Ingredient]
     
     var body: some View {
         HStack {

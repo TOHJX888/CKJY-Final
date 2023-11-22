@@ -22,15 +22,14 @@ struct FoodListInterfaceView: View {
             VStack {
                 Text(ingredient.name)
                     .strikethrough(ingredient.isEaten)
-                if !ingredient.points.isEmpty {
-                    HStack {
-                        Text(ingredient.points)
-                        Image(systemName: "leaf.fill")
-                    }
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .strikethrough(ingredient.isEaten)
+                HStack {
+                    Text("\(ingredient.healthyRating - 1)")
+                    Image(systemName: "leaf.fill")
                 }
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .strikethrough(ingredient.isEaten)
+                
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  FoodListView.swift
+//  NewFoodView.swift
 //  CKJY Final
 //
 //  Created by Celine Quek on 18/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FoodListView: View {
+struct NewFoodView: View {
     
     @State private var ingredients = [
         Ingredient(name: "Agar-agar", healthyRating: 1),
@@ -167,44 +167,26 @@ struct FoodListView: View {
     ]
     @State private var isSheetPresented = false
     @State private var searchTerm = ""
-    @State private var newFoodSearchTerm = ""
-    @EnvironmentObject var ingredientManager: IngredientManager
     @EnvironmentObject var newFoodManager: NewFoodManager
     
     var body: some View {
         NavigationStack {
-            List(ingredientManager.ingredientsFiltered, editActions: [.all]) { $ingredient in
+            List(newFoodManager.ingredientsFiltered, editActions: [.all]) { $ingredient in
                 FoodListInterfaceView(ingredient: $ingredient)
                 //                FoodListInterfaceView(ingredient: $ingredient, Binding(get: {ingredient}, set: {ingredient = $0}))
                 
             
             }
-            .searchable(text: $ingredientManager.searchTerm)
+            .searchable(text: $newFoodManager.newFoodSearchTerm)
             .navigationTitle("My Food List")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isSheetPresented = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
-        }
-        .sheet(isPresented: $isSheetPresented, content: {
-            NewFoodView()
-        })
-        
+        }        
     }
 }
 
-struct FoodListView_Previews: PreviewProvider {
+struct NewFoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodListView()
-            .environmentObject(IngredientManager())
+        NewFoodView()
+            .environmentObject(NewFoodManager())
     }
 }
 

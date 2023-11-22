@@ -1,15 +1,15 @@
 //
-//  FoodListView.swift
+//  NewFoodManager.swift
 //  CKJY Final
 //
-//  Created by Celine Quek on 18/11/23.
+//  Created by Celine Quek on 21/11/23.
 //
 
+import Foundation
 import SwiftUI
 
-struct FoodListView: View {
-    
-    @State private var ingredients = [
+class NewFoodManager: ObservableObject {
+    @Published var ingredients: [Ingredient] = [
         Ingredient(name: "Agar-agar", healthyRating: 1),
         Ingredient(name: "Alcohol", healthyRating: 1),
         Ingredient(name: "Apple cider", healthyRating: 1),
@@ -164,47 +164,52 @@ struct FoodListView: View {
         Ingredient(name: "Red currents", healthyRating: 2),
         Ingredient(name: "Red palm oil", healthyRating: 2),
         Ingredient(name: "Red wine", healthyRating: 1),
-    ]
-    @State private var isSheetPresented = false
-    @State private var searchTerm = ""
-    @State private var newFoodSearchTerm = ""
-    @EnvironmentObject var ingredientManager: IngredientManager
-    @EnvironmentObject var newFoodManager: NewFoodManager
-    
-    var body: some View {
-        NavigationStack {
-            List(ingredientManager.ingredientsFiltered, editActions: [.all]) { $ingredient in
-                FoodListInterfaceView(ingredient: $ingredient)
-                //                FoodListInterfaceView(ingredient: $ingredient, Binding(get: {ingredient}, set: {ingredient = $0}))
-                
-            
-            }
-            .searchable(text: $ingredientManager.searchTerm)
-            .navigationTitle("My Food List")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isSheetPresented = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
+    ] {
+        didSet {
+            save()
         }
-        .sheet(isPresented: $isSheetPresented, content: {
-            NewFoodView()
+    }
+    
+    @Published var newFoodSearchTerm = ""
+    
+    var ingredientsFiltered: Binding<[Ingredient]> {
+        Binding (
+            get: {
+                if self.newFoodSearchTerm == "" {return []}
+                return self.ingredients.filter {
+                    $0.name.lowercased().contains(self.newFoodSearchTerm.lowercased())
+                }
+        },
+        set: {
+            self.ingredients = $0
         })
+    }
         
+    init() {
+        load()
+    }
+    
+    func getArchiveURL() -> URL {
+        let plistName = "ingredients.plist"
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        return documentsDirectory.appendingPathComponent(plistName)
+    }
+    
+    func save() {
+        let archiveURL = getArchiveURL()
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedIngredients = try? propertyListEncoder.encode(ingredients)
+        try? encodedIngredients?.write(to: archiveURL, options: .noFileProtection)
+    }
+    
+    func load() {
+        let archiveURL = getArchiveURL()
+        let propertyListDecoder = PropertyListDecoder()
+                
+        if let retrievedIngredientData = try? Data(contentsOf: archiveURL),
+            let ingredientsDecoded = try? propertyListDecoder.decode([Ingredient].self, from: retrievedIngredientData) {
+            ingredients = ingredientsDecoded
+        }
     }
 }
-
-struct FoodListView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodListView()
-            .environmentObject(IngredientManager())
-    }
-}
-

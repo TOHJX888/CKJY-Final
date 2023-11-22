@@ -10,11 +10,11 @@ import SwiftUI
 
 class IngredientManager: ObservableObject {
     @Published var ingredients: [Ingredient] = [
-        Ingredient(name: "Agar-agar", points: "0", healthyRating: 1),
-        Ingredient(name: "Alcohol", points: "0", healthyRating: 1),
-        Ingredient(name: "Apple cider", points: "0", healthyRating: 1),
-        Ingredient(name: "Almond butter", points: "1", healthyRating: 2),
-        Ingredient(name: "Bacon", points: "-1", healthyRating: 0),
+        Ingredient(name: "Agar-agar", healthyRating: 1),
+        Ingredient(name: "Alcohol", healthyRating: 1),
+        Ingredient(name: "Apple cider", healthyRating: 1),
+        Ingredient(name: "Almond butter", healthyRating: 2),
+        Ingredient(name: "Bacon", healthyRating: 0),
         Ingredient(name: "Barley malt syrup", healthyRating: 1),
         Ingredient(name: "Beef fat", healthyRating: 0),
         Ingredient(name: "BHA (butylated hydroxyanisole", healthyRating: 0),
